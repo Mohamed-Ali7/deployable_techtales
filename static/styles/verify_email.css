@@ -1,0 +1,189 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+body {
+    display: none;
+}
+
+.body_wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #31a14a2a;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: #4caf4fbb;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 100%;
+    min-width: 220px;
+    background-image: url("../images/tech_tales_logo.png");
+    background-size: 150px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-left: 50px;
+    margin-right: 100px;
+    cursor: pointer;
+}
+
+.header_nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 100px;
+    box-sizing: border-box;
+}
+
+header .login_button,
+header .signup_button,
+header .logout_button,
+header .home_button {
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    color: #4CAF50;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 20px;
+    padding: 9px;
+}
+
+.nav_profile_pic {
+    height: 60px;
+    width: 60px;
+    background-image: url("../images/user_profile_pic.png");
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: left 20px center;
+    cursor: pointer;
+}
+
+.email_verification_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: -100px;
+}
+
+.intro_text {
+    text-align: center;
+    color: rgb(78, 78, 78);
+    margin-bottom: 30px;
+}
+
+.intro_text h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.intro_text p {
+    font-size: 18px;
+    margin: 10px 0 0;
+}
+
+#email_verification_form {
+    width: 100%;
+    max-width: 400px; /* Maximum width of the form */
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#email_verification_form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;   
+}
+
+.input_group {
+    position: relative;
+}
+
+.input_group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.form-control {
+    padding-left: 40px;
+}
+
+.invalid-feedback {
+    display: none;
+}
+
+#verify_email_submit {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#verify_email_submit:hover {
+    background-color: #45a049;
+}
+
+.sign_up_redirect {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.sign_up_redirect a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.sign_up_redirect a:hover {
+    text-decoration: underline;
+}
+
+.error_message {
+    color: red;
+    font-size: 14px;
+}
+
+.error {
+    border-color: red;
+}
