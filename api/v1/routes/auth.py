@@ -267,7 +267,7 @@ def send_email_verfication_mail(token, user):
 
     msg = Message(subject='Verify Your Email Address', sender='noreply@techtales.com',
                   recipients=[user.email])
-    link = f"http://localhost:5500/templates/verify_email.html?token={token}"
+    link = f"http://techtales.alxairbnb.tech/templates/verify_email?token={token}"
     msg.html = f"""
     <h2>Hi {user.first_name},</h2>
     

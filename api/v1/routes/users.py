@@ -239,7 +239,7 @@ def password_reset_request():
 
     serializer = URLSafeTimedSerializer(app.config['JWT_SECRET_KEY'])
     token = serializer.dumps({'email':user.email})
-    reset_link = f'http://localhost:5500/templates/password_reset.html?token={token}'
+    reset_link = f'http://techtales.alxairbnb.tech/templates/password_reset?token={token}'
     msg = Message(subject='Password Reset Request', sender='noreply@techtales.com',
                   recipients=[user.email])
     msg.html = f"""
