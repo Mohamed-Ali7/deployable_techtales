@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
   $('.logo').click(function () {
-    window.location = 'home.html';
+    window.location = '/home';
   });
 
   $('header .home_button').click(function () {
-    window.location = "home.html"
+    window.location = "/home"
   })
 
   function validateEmail(email) {
@@ -137,7 +137,7 @@ $(document).ready(function () {
       }
 
       $.post({
-        url: 'http://localhost:5000/api/v1/auth/register',
+        url: 'http://techtales.alxairbnb.tech/api/v1/auth/register',
         contentType: 'application/json',
         data: JSON.stringify(userData),
         success: function (data) {
@@ -145,7 +145,7 @@ $(document).ready(function () {
             '<strong>You have signed up successfully,</strong><br>'+
             'a verification link has sent to your email'
           )
-          window.location = 'login.html'
+          window.location = '/login'
         }
       }).fail(function (response) {
         if (response.responseJSON.message === 'This email address is already in use') {

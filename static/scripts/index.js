@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $.get({
-    url: 'http://localhost:5000/api/v1/posts?per_page=2',
+    url: 'http://techtales.alxairbnb.tech/api/v1/posts?per_page=2',
     success: function (data) {
       const posts = data.posts
       let postNum = 1;
@@ -9,7 +9,7 @@ $(document).ready(function () {
 
         postElement.find('.post_title').text(post.title);
         postElement.find('.post_content').text(post.content);
-        postElement.find('a').attr('href', `post.html?id=${post.id}`);
+        postElement.find('a').attr('href', `/post?id=${post.id}`);
         postNum++;
       }
 

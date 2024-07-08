@@ -47,14 +47,14 @@ $(document).ready(function () {
       const userData =
 
         $.post({
-          url: 'http://localhost:5000/api/v1/users/password-reset-request',
+          url: 'http://techtales.alxairbnb.tech/api/v1/users/password-reset-request',
           contentType: 'application/json',
           data: JSON.stringify({ email: email }),
           success: function (data) {
             sessionStorage.setItem('flush_message',
               'Password reset link has sent successfully'
             )
-            window.location = 'login.html'
+            window.location = '/login'
           }
         }).fail(function (response) {
           if (response.responseJSON) {

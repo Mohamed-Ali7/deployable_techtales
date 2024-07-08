@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="icon" href="../static/images/tech_tales_icon.png"/>
+  <link rel="icon" href="static/images/tech_tales_icon.png"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../static/styles/login.css">
+  <link rel="stylesheet" href="static/styles/login.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script>
     if (Cookies.get('access_token')) {
-      window.location = 'home.html'
+      window.location = '/home'
     }
   </script>
 </head>
@@ -46,16 +46,16 @@
           </div>
           <button id="login_submit" type="submit" class="btn btn-primary btn-block">Login</button>
           <div class="links">
-            <a href="verify_email.html">Send a verification mail</a>
+            <a href="/verify_email">Send a verification mail</a>
               <div class="sign_up_redirect">
-              Don't have an account? <a href="sign_up.html">Sign up</a>
+              Don't have an account? <a href="/register">Sign up</a>
             </div>
-            <a href="password_reset_request.html">Forgot my password</a>
+            <a href="/password_reset_request">Forgot my password</a>
           </div>
         </div>
       </form>
     </section>
   </div>
-  <script src="../static/scripts/login.js"></script>
+  <script src="static/scripts/login.js"></script>
 </body>
 </html>

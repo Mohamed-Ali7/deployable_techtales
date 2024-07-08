@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $.get({
-    url: 'http://localhost:5000/api/v1/posts',
+    url: 'http://techtales.alxairbnb.tech/api/v1/posts',
     success: function (data) {
       const posts = data.posts
       for (const post of posts) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
 
   $('.posts').on('click', '.post_card', function (event) {
-    window.location = 'post.html?id=' + $(this).data('id')
+    window.location = '/post?id=' + $(this).data('id')
   })
 
   $(window).scroll(function () {
@@ -48,9 +48,9 @@ $(document).ready(function () {
   $('.write_button_group').click(function () {
     if (!Cookies.get('access_token')) {
       alert('You have to login to be able to write your own posts');
-      window.location = 'login.html';
+      window.location = '/login';
     } else {
-      window.location = 'post.html?write=True;'
+      window.location = '/post?write=True;'
     }
   });
 });

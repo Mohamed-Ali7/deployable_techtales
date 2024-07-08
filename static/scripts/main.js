@@ -10,13 +10,13 @@ $(document).ready(function () {
           refreshTokenAccessed = true;
 
           if (!refreshToken) {
-            window.location = 'login.html';
+            window.location = '/login';
             return;
           }
 
           $.ajax({
             type: 'GET',
-            url: 'http://localhost:5000/api/v1/auth/refresh',
+            url: 'http://techtales.alxairbnb.tech/api/v1/auth/refresh',
             headers: {
               'Authorization': 'Bearer ' + refreshToken
             }
@@ -33,12 +33,12 @@ $(document).ready(function () {
 
             Cookies.remove('access_token');
             Cookies.remove('refresh_token');
-            window.location = 'login.html';
+            window.location = '/login';
           });
         } else {
           Cookies.remove('access_token');
           Cookies.remove('refresh_token');
-          window.location = 'login.html'
+          window.location = '/login'
         }
       },
       403: function (xhr) {
@@ -46,12 +46,12 @@ $(document).ready(function () {
         return;
       },
       404: function (xhr) {
-        window.location = 'not_found.html'
+        window.location = '/not_found'
       }
     },
     beforeSend: function (xhr, settings) {
       const accessToken = Cookies.get('access_token');
-      if (accessToken && settings.url != 'http://localhost:5000/api/v1/auth/refresh') {
+      if (accessToken && settings.url != 'http://techtales.alxairbnb.tech/api/v1/auth/refresh') {
         originalRequest = settings;
         xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
       }

@@ -2,11 +2,11 @@ $(document).ready(function () {
 
   
   $('.logo').click(function () {
-    window.location = 'home.html';
+    window.location = '/home';
   });
 
   $('header .home_button').click(function () {
-    window.location = "home.html"
+    window.location = "/home"
   })
 
   function validateEmail(email) {
@@ -89,13 +89,13 @@ $(document).ready(function () {
       }
 
       $.post({
-        url: 'http://localhost:5000/api/v1/auth/login',
+        url: 'http://techtales.alxairbnb.tech/api/v1/auth/login',
         contentType: 'application/json',
         data: JSON.stringify(userData),
         success: function (data) {
           Cookies.set('access_token', data.tokens.access_token, { 'expires': 10 })
           Cookies.set('refresh_token', data.tokens.refresh_token, { 'expires': 10 })
-          window.location = 'home.html';
+          window.location = '/home';
         }
       }).fail(function (response) {
         let message;

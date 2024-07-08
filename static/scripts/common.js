@@ -36,15 +36,15 @@ $(document).ready(function () {
   $('.header_nav').append(headerHomeElement)
 
   $('header .login_button').click(function () {
-    window.location = "login.html"
+    window.location = "/login"
   })
 
   $('header .signup_button').click(function () {
-    window.location = "sign_up.html"
+    window.location = "/register"
   })
 
   $('header .home_button').click(function () {
-    window.location = "home.html"
+    window.location = "/home"
   })
 
   $('header .logout_button').click(function () {
@@ -54,13 +54,13 @@ $(document).ready(function () {
     }
     data = { tokens: tokens }
     $.post({
-      url: 'http://localhost:5000/api/v1/auth/logout',
+      url: 'http://techtales.alxairbnb.tech/api/v1/auth/logout',
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: function (data) {
         Cookies.remove('access_token')
         Cookies.remove('refresh_token')
-        window.location = 'login.html';
+        window.location = '/login';
       }
     }).fail(function (response) {
       if (response.responseJSON) {
@@ -75,10 +75,10 @@ $(document).ready(function () {
   });
 
   $('.nav_profile_pic').click(function () {
-    window.location = `user_profile.html?id=${currentUserId}`
+    window.location = `/user?id=${currentUserId}`
   });
 
   $('.logo').click(function () {
-    window.location = 'home.html';
+    window.location = '/home';
   });
 });

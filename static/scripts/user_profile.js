@@ -78,7 +78,7 @@ $(document).ready(function () {
       }
       $.ajax({
         type: 'PUT',
-        url: `http://localhost:5000/api/v1/users/${currentUser.public_id}`,
+        url: `http://techtales.alxairbnb.tech/api/v1/users/${currentUser.public_id}`,
         contentType: 'application/json',
         data: JSON.stringify(newUserContent),
         success: function (data) {
@@ -200,7 +200,7 @@ $(document).ready(function () {
       }
       $.ajax({
         type: 'PUT',
-        url: `http://localhost:5000/api/v1/users/${user.public_id}/edit/password`,
+        url: `http://techtales.alxairbnb.tech/api/v1/users/${user.public_id}/edit/password`,
         contentType: 'application/json',
         data: JSON.stringify(newPasswordData),
         success: function (data) {
@@ -212,7 +212,7 @@ $(document).ready(function () {
             password: newPasswordElement.val().trim()
           }
           $.post({
-            url: 'http://localhost:5000/api/v1/auth/login',
+            url: 'http://techtales.alxairbnb.tech/api/v1/auth/login',
             contentType: 'application/json',
             data: JSON.stringify(userLoginData),
             success: function (data) {
@@ -287,14 +287,14 @@ $(document).ready(function () {
     userIsAdmin = decodedJwtToken.admin;
   }
   if (!userId && !userIsAdmin) {
-    window.location = 'home.html';
+    window.location = '/home';
   }
 
   if (userId) {
     $('.user_about_info').css('display', 'flex')
 
     $.get({
-      url: `http://localhost:5000/api/v1/users/${userId}`,
+      url: `http://techtales.alxairbnb.tech/api/v1/users/${userId}`,
       success: function (user) {
         $('.user_info .user_name').text(
           `${user.first_name} ${user.last_name}`
@@ -349,11 +349,11 @@ $(document).ready(function () {
           }
           $.ajax({
             type: 'DELETE',
-            url: `http://localhost:5000/api/v1/users/${userId}`,
+            url: `http://techtales.alxairbnb.tech/api/v1/users/${userId}`,
             success: function (data) {
               Cookies.remove('access_token');
               Cookies.remove('refresh_token');
-              window.location = 'home.html';
+              window.location = '/home';
               console.log(data.message)
             }
           }).fail(function (response) {
@@ -391,7 +391,7 @@ $(document).ready(function () {
             return;
           }
           $.get({
-            url: `http://localhost:5000/api/v1/users/${user.public_id}/posts`,
+            url: `http://techtales.alxairbnb.tech/api/v1/users/${user.public_id}/posts`,
             success: function (data) {
               postsAreCalled = true;
               const posts = data.posts
@@ -401,7 +401,7 @@ $(document).ready(function () {
 
               $('.edit_post_button').click(function () {
                 const postId = $(this).closest('.post_details').data('id');
-                window.location = `post.html?id=${postId}&edit=True`
+                window.location = `/post?id=${postId}&edit=True`
               });
 
               $('.delete_post_button').click(function () {
@@ -415,7 +415,7 @@ $(document).ready(function () {
                 }
                 $.ajax({
                   type: 'DELETE',
-                  url: `http://localhost:5000/api/v1/posts/${postId}`,
+                  url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}`,
                   success: function (data) {
                     console.log(data.message)
                     window.location.reload()
@@ -442,7 +442,7 @@ $(document).ready(function () {
 
     $('.user_posts').on('click', '.view_post_button', function () {
       const clickedPostId = $(this).closest('.post_details').data('id');
-      window.location = `post.html?id=${clickedPostId}`
+      window.location = `/post?id=${clickedPostId}`
     });
 
   }

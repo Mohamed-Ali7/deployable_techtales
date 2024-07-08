@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   if (!token) {
     if (Cookies.get('access_token')) {
-      window.location = 'home.html'
+      window.location = '/home'
     }
     $('body').show()
     function validateEmail(email) {
@@ -47,7 +47,7 @@ $(document).ready(function () {
         const email = $('#verify_email').val().trim();
 
         $.post({
-          url: 'http://localhost:5000/api/v1/auth/email-verification',
+          url: 'http://techtales.alxairbnb.tech/api/v1/auth/email-verification',
           contentType: 'application/json',
           data: JSON.stringify({email: email}),
           success: function (data) {
@@ -55,7 +55,7 @@ $(document).ready(function () {
               'flush_message',
               'A verification link has sent to your email'
             )
-            window.location = 'login.html';
+            window.location = '/login';
           }
         }).fail(function (response) {
           let message;
@@ -76,10 +76,10 @@ $(document).ready(function () {
   }
 
   $.get({
-    url: `http://localhost:5000/api/v1/auth/email-verification/${token}`,
+    url: `http://techtales.alxairbnb.tech/api/v1/auth/email-verification/${token}`,
     success: function (data) {
       sessionStorage.setItem('flush_message', data.message);
-      window.location = 'login.html';
+      window.location = '/login';
     }
   }).fail(function (response) {
     if (response.responseJSON) {
@@ -89,14 +89,14 @@ $(document).ready(function () {
           'Invalid or expired verification link, ' +
           'click on (Send a verification mail) to send a new link'
         );
-        window.location = 'login.html';
+        window.location = '/login';
       } else {
         sessionStorage.setItem('flush_error_message', response.responseJSON.message);
-        window.location = 'login.html';
+        window.location = '/login';
       }
     } else {
       sessionStorage.setItem('flush_error_message', 'Something went wrong!');
-      window.location = 'login.html';
+      window.location = '/login';
     }
   });
 });

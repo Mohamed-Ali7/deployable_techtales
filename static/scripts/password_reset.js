@@ -8,7 +8,7 @@ $(document).ready(function () {
       'Invalid password reset link,<br>' +
       'Click on (forgot my password) to send a new password reset link'
     );
-    window.location = 'login.html';
+    window.location = '/login';
     return;
   }
   function showError(input, message) {
@@ -75,14 +75,14 @@ $(document).ready(function () {
       }
 
       $.post({
-        url: 'http://localhost:5000/api/v1/users/password-reset',
+        url: 'http://techtales.alxairbnb.tech/api/v1/users/password-reset',
         contentType: 'application/json',
         data: JSON.stringify(userData),
         success: function (data) {
           sessionStorage.setItem('flush_message',
             'Your password has been successfully reset'
           )
-          window.location = 'login.html'
+          window.location = '/login'
         }
       }).fail(function (response) {
         if (response.responseJSON) {
@@ -90,7 +90,7 @@ $(document).ready(function () {
             'Invalid or expired password reset link, ' +
             'click on (Forgot my password) to send a new link'
           );
-          window.location = 'login.html';
+          window.location = '/login';
         } else {
           console.error('Something went wrong!')
         }

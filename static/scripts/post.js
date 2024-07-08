@@ -43,7 +43,7 @@ $(document).ready(function () {
     const commentUserElement = $('<div class="comment_user"></div>');
     const userProfPicElement = $('<img src="../static/images/user_profile_pic.png">');
     const userNameElement = $(
-      `<a href="user_profile.html?id=${commentuserId}" class="user_name"></a>`
+      `<a href="/user?id=${commentuserId}" class="user_name"></a>`
     ).text(comment.user_name);
 
     const commentDateElement = $('<span class="comment_date"></span>');
@@ -100,7 +100,7 @@ $(document).ready(function () {
       const newCommentContent = $('.popup_comment_content').val()
       $.ajax({
         type: 'PUT',
-        url: `http://localhost:5000/api/v1/posts/${postId}/comments/${commentId}`,
+        url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}/comments/${commentId}`,
         contentType: 'application/json',
         data: JSON.stringify({ content: newCommentContent }),
         success: function (data) {
@@ -116,11 +116,11 @@ $(document).ready(function () {
   }
   function loadPost(postId) {
     $.get({
-      url: `http://localhost:5000/api/v1/posts/${postId}`,
+      url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}`,
       success: function (post) {
         const postUserName = `${post.user.first_name} ${post.user.last_name}`
         const postUserId = post.user.public_id
-        const userLinkElement = `<a href="user_profile.html?id=${postUserId}">${postUserName}</a>`
+        const userLinkElement = `<a href="/user?id=${postUserId}">${postUserName}</a>`
         $('.post_title').text(post.title)
         $('.post_info .posted_by').html(`Posted by ${userLinkElement}</a>`)
         const formatedDate = formatDate(post.created_at)
@@ -132,7 +132,7 @@ $(document).ready(function () {
         $('.post_content').html(formattedContent)
 
         $.get({
-          url: `http://localhost:5000/api/v1/posts/${postId}/comments`,
+          url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}/comments`,
           success: function (data) {
             const commentElements = []
             const comments = data.comments;
@@ -142,7 +142,7 @@ $(document).ready(function () {
             $('.post_comments').append(commentElements);
 
             const addCommentGroupElement = $('.add_comment_group');
-            const loginLink = '<a href="login.html">Login</a>';
+            const loginLink = '<a href="/login">Login</a>';
             const addCommentLoginNotif = $(
               `<p>You have to ${loginLink} to be able to leave comments for different posts</p>`
             );
@@ -160,7 +160,7 @@ $(document).ready(function () {
               commentContent = $('#comment_area').val().trim();
               if (commentContent) {
                 $.post({
-                  url: `http://localhost:5000/api/v1/posts/${postId}/comments`,
+                  url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}/comments`,
                   contentType: 'application/json',
                   data: JSON.stringify({ content: commentContent }),
                   success: function (data) {
@@ -181,7 +181,7 @@ $(document).ready(function () {
           const deletePostButtonElement = $('<button class="delete_post_button">Delete</button>');
           $('.post_buttons').append(editPostButtonElement, deletePostButtonElement);
           $('.edit_post_button').click(function () {
-            window.location = `post.html?id=${postId}&edit=True`
+            window.location = `/post?id=${postId}&edit=True`
           });
 
           $('.delete_post_button').click(function () {
@@ -193,10 +193,10 @@ $(document).ready(function () {
             }
             $.ajax({
               type: 'DELETE',
-              url: `http://localhost:5000/api/v1/posts/${postId}`,
+              url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}`,
               success: function (data) {
                 console.log(data.message)
-                window.location = 'home.html';
+                window.location = '/home';
               }
             }).fail(function (response) {
               console.error(response.responseJSON.message)
@@ -226,7 +226,7 @@ $(document).ready(function () {
           }
           $.ajax({
             type: 'DELETE',
-            url: `http://localhost:5000/api/v1/posts/${postId}/comments/${commentId}`,
+            url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}/comments/${commentId}`,
             success: function (data) {
               console.log(data.message)
               commentElement.remove();
@@ -274,12 +274,12 @@ $(document).ready(function () {
   function loadEditForm(postId) {
 
     $.get({
-      url: `http://localhost:5000/api/v1/posts/${postId}`,
+      url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}`,
       success: function (post) {
 
         if (post.user.public_id != currentUserId) {
           console.error('You are not authorized to edit this post');
-          window.location = `post.html?id=${postId}`;
+          window.location = `/post?id=${postId}`;
           return;
         }
 
@@ -289,7 +289,7 @@ $(document).ready(function () {
         $('#post_content').val(post.content);
 
         $('.btn-secondary').click(function () {
-          window.location = `post.html?id=${postId}`
+          window.location = `/post?id=${postId}`
         })
 
         $('#post_form').submit(function (event) {
@@ -335,11 +335,11 @@ $(document).ready(function () {
 
           $.ajax({
             type: 'PUT',
-            url: `http://localhost:5000/api/v1/posts/${postId}`,
+            url: `http://techtales.alxairbnb.tech/api/v1/posts/${postId}`,
             contentType: 'application/json',
             data: JSON.stringify(updatedPost),
             success: function (data) {
-              window.location = `post.html?id=${postId}`
+              window.location = `/post?id=${postId}`
             },
             error: function (response) {
               console.error(response.responseJSON.message);
@@ -399,11 +399,11 @@ $(document).ready(function () {
       };
 
       $.post({
-        url: 'http://localhost:5000/api/v1/posts',
+        url: 'http://techtales.alxairbnb.tech/api/v1/posts',
         contentType: 'application/json',
         data: JSON.stringify(newPost),
         success: function (data) {
-          window.location = `post.html?id=${data.id}`;
+          window.location = `/post?id=${data.id}`;
         },
         error: function (response) {
           console.error(response.responseJSON.message);
@@ -411,7 +411,7 @@ $(document).ready(function () {
       });
     });
     $('.btn-secondary').click(function () {
-      window.location = `home.html`
+      window.location = `/home`
     })
   }
 
@@ -421,12 +421,12 @@ $(document).ready(function () {
     if (postId) {
       loadEditForm(postId);
     } else {
-      window.location = 'home.html';
+      window.location = '/home';
     }
   } else if (urlParams.get('write')) {
     if (!Cookies.get('access_token')) {
       alert('You have to login to be able to write your own posts');
-      window.location = 'home.html';
+      window.location = '/home';
       return;
     }
     loadCreateForm();
@@ -435,7 +435,7 @@ $(document).ready(function () {
     if (postId) {
       loadPost(postId);
     } else {
-      window.location = 'home.html';
+      window.location = '/home';
     }
   }
 });
